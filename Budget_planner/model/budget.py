@@ -2,6 +2,7 @@
 from odoo import fields, models
 
 class Budget(models.Model):
+
     _name = 'budget.user'
     _description = 'Budget Management'
 
@@ -14,7 +15,15 @@ class Budget(models.Model):
         ('M', 'Month'),
         ('Y', 'Year'),
     ],)
-
+    expense_cost=fields.Float('ExpenseAmount')
+    savings_cost=fields.Float('SavingsAmount')
     expenses = fields.One2many('budget_management.expense', 'budget_id', string='Expenses')
-    savings = fields.One2many('budget_management.saving', 'budget_id', string='Savings')
+    is_recurring = fields.Boolean(string='Recurring Budget')
+    budget_category = fields.Selection([
+        ('personal', 'Personal'),
+        ('business', 'Business'),
+        ('travel', 'Travel'),
+        ('other', 'Other'),
+    ], string='Budget Category')
+    
 
