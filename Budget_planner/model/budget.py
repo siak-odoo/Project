@@ -2,7 +2,6 @@
 from odoo import fields, models
 
 class Budget(models.Model):
-
     _name = 'budget.user'
     _description = 'Budget Management'
 
@@ -10,14 +9,15 @@ class Budget(models.Model):
     amount = fields.Float(string='Budget Amount', required=True)
     start_date = fields.Date(string='Start Date', required=True)
     end_date = fields.Date(string='End Date', required=True)
+    description=fields.Text("Description")
     state = fields.Selection([
         ('W', 'Week'),
         ('M', 'Month'),
         ('Y', 'Year'),
     ],)
     expense_cost=fields.Float('ExpenseAmount')
-    savings_cost=fields.Float('SavingsAmount')
-    expenses = fields.One2many('budget_management.expense', 'budget_id', string='Expenses')
+    savings_cost = fields.Float('SavingsAmount', compute='_compute_savings_cost')
+    expenses = fields.One2many('budget.expenseinfo','budget_id', string='Expenses')
     is_recurring = fields.Boolean(string='Recurring Budget')
     budget_category = fields.Selection([
         ('personal', 'Personal'),
@@ -25,5 +25,11 @@ class Budget(models.Model):
         ('travel', 'Travel'),
         ('other', 'Other'),
     ], string='Budget Category')
+    
+    def _compute_savings_cost(self):
+        for record in self:
+            record.savings_cost = record.amount - record.expense_cost
+
+
     
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Top menu item -->
+    <menuitem id="budget_menu_root" name="Budget">
+        <menuitem id="budget_first_level_menu" name="Budgets" >
+            <menuitem id="budget_user_menu_action1" action="budget_user_action" />
+        </menuitem>
+        <menuitem id="budget_first_level_menu2" name="Expenses" >
+            <menuitem id="budget_user_menu_action2" action="budget_expense_action" />
+        </menuitem>
+        <menuitem id="budget_first_level_menu3" name="Goals" >
+            <menuitem id="budget_user_menu_action3" action="budget_savings_action" />
+        </menuitem>
+    </menuitem>
+</odoo>

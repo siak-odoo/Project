@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Action for the estate property model -->
+    <record id="budget_savings_action" model="ir.actions.act_window">
+        <field name="name">Goals</field>
+        <field name="res_model">budget.savings</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="budget_savings_view_tree" model="ir.ui.view">
+        <field name="name">budget.savings.view.tree</field>
+        <field name="model">budget.savings</field>
+        <field name="arch" type="xml">
+            <tree string="records" open_form_view='True'  >
+               <field name="name"/>
+               <field name="target_amount" />
+               <field name="current_amount"/>
+               <field name="deadline" />
+               <field name="budget_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="budget_savings_view_form" model="ir.ui.view">
+        <field name="name">budget.savings.view.form</field>
+        <field name="model">budget.savings</field>
+        <field name="arch" type="xml">
+            <form string="budget form" >
+                <group>
+                <group>
+               <field name="name"/>
+               <field name="target_amount" />
+               <field name="current_amount"/>
+               <field name="deadline" />
+               <field name="budget_id" />
+                </group>  
+                </group>   
+          </form>
+        </field>
+    </record>
+  </odoo>

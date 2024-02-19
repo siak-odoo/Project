@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Action for the estate property model -->
+    <record id="budget_expenseinfo_view_tree" model="ir.ui.view">
+        <field name="name">budget.expenseinfo.view.tree</field>
+        <field name="model">budget.expenseinfo</field>
+        <field name="arch" type="xml">
+            <tree string="records" editable="bottom" open_form_view='True'  >
+                <field name="name"/> 
+                    <field name="amount"/>
+                    <field name="expense_category"/>
+                    <field name="budget_id"/>   
+            </tree>
+        </field>
+    </record>
+
+    <record id="budget_expenseinfo_view_form" model="ir.ui.view">
+        <field name="name">budget.expenseinfo.view.form</field>
+        <field name="model">budget.expenseinfo</field>
+        <field name="arch" type="xml">
+            <form string="budget form" >
+                <group>
+                <group>
+                    <field name="name"/> 
+                    <field name="amount"/>
+                    <field name="expense_category"/>
+                    <field name="budget_id"/>            
+                  </group>
+                </group>   
+          </form>
+        </field>
+    </record>
+
+    <record id="budget_expenseinfo_action" model="ir.actions.act_window">
+        <field name="name">Expensesinfo</field>
+        <field name="res_model">budget.expenseinfo</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+  </odoo>

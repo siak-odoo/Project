@@ -2,13 +2,12 @@
 from odoo import fields, models
 
 class Expense(models.Model):
-    _name = 'budget.expense'
-    _description = 'Expense'
-
-    name = fields.Char(string='Expense Name', required=True)
+    _name = 'budget.expenseinfo'
+    _description = 'Expenseinfo'
+   
+    name = fields.Many2one('budget.expense', string='Expensename')
     amount = fields.Float(string='Amount', required=True)
-    budget_id = fields.Many2one('budget.user', string='Budget')
-    date = fields.Date(string='Expense Date')
+    budget_id = fields.Many2one('budget.user',string='Budget')
     expense_category = fields.Selection([
         ('food', 'Food'),
         ('transportation', 'Transportation'),
@@ -16,7 +15,7 @@ class Expense(models.Model):
         ('utilities', 'Utilities'),
         ('other', 'Other'),
     ], string='Expense Category')
-    description = fields.Text(string='Description')
 
+    
 
 
