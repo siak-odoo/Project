@@ -10,6 +10,8 @@ class SavingsGoal(models.Model):
     current_amount = fields.Float(string='Current Amount')
     deadline = fields.Date(string='Deadline')
     budget_id = fields.Many2one('budget.user', string='Budget')
+
+    
     
     
 

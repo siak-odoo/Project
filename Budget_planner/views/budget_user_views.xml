@@ -45,7 +45,7 @@
                       </page>
                       <page string="Expense info">
                         <group>
-                            <field name="expenses" string=""/>
+                            <field name="expenses" string="" />
                           </group> 
                       </page>
                   </notebook>
