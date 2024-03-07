@@ -106,9 +106,11 @@
             scales="day,week,month,year"
             decoration-info="state in ['W']"
             string="schedule"
+            color="amount"
             pill_label = "True"
             default_group_by="budget_category">
-            <field name="state" />                                                                                                                                                                                                                                                                                                                                                                                                                                                 -->
+            <field name="state" />
+            <field name="amount" />                                                                                                                                                                                                                                                                                                                                                                                                                                                       -->
         </gantt>
         </field>
     </record>
