@@ -4,7 +4,7 @@
     <record id="budget_user_action" model="ir.actions.act_window">
         <field name="name">Budgets</field>
         <field name="res_model">budget.user</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">kanban,tree,form,graph,gantt</field>
     </record>
     <record id="budget_user_view_tree" model="ir.ui.view">
         <field name="name">budget.user.view.tree</field>
@@ -19,6 +19,17 @@
         </field>
     </record>
 
+    <record id="budget_user_view_graph" model="ir.ui.view">
+        <field name="name">budget.user.view.graph</field>
+        <field name="model">budget.user</field>
+        <field name="arch" type="xml">
+            <graph string="records"  >
+               <field name="start_date" interval="day" />
+               <field name="end_date"/>
+            </graph>
+        </field>
+    </record>
+
     <record id="budget_user_view_form" model="ir.ui.view">
         <field name="name">budget.user.view.form</field>
         <field name="model">budget.user</field>
@@ -30,6 +41,7 @@
                     <field name="amount" />
                     <field name="start_date" />
                     <field name="end_date"/>
+                    <field name="state"/>
                   </group>
                   <group col="2">
                     <field name="budget_category"/>
@@ -82,7 +94,25 @@
             </kanban>
         </field>
     </record> 
-  
+
+    <record id="view_budget_user_gantt" model="ir.ui.view">
+        <field name="name">budget.user.gantt</field>
+        <field name="model">budget.user</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <gantt date_start="start_date"
+            date_stop="end_date"
+            default_scale="week"
+            scales="day,week,month,year"
+            decoration-info="state in ['W']"
+            string="schedule"
+            pill_label = "True"
+            default_group_by="budget_category">
+            <field name="state" />                                                                                                                                                                                                                                                                                                                                                                                                                                                 -->
+        </gantt>
+        </field>
+    </record>
+    
     <record id="budget_user_view_search" model="ir.ui.view">
         <field name="name">budget.user.search</field>
         <field name="model">budget.user</field>
@@ -97,4 +127,12 @@
             </search>
         </field>
       </record>
+
+      <!-- <record id="budget_user_action" model="ir.actions.act_window">
+        <field name="name">Budgets</field>
+        <field name="res_model">budget.user</field>
+        <field name="view_mode">tree,form,graph,kanban,gantt</field>
+         <field name="view_id" ref="budget_user_view_tree"/>
+    </record> -->
+
   </odoo>

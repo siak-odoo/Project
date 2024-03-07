@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="budget_grid">
+        <t t-call="website.layout">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+            <section style="background-color: #fff;">
+                <div class="container py-6 text-center"> <!-- Centered content -->
+                    <h2>Available Budgets</h2> <!-- Centered header -->                  
+                <!-- Date Picker and Filter Button -->
+                <div class="row justify-content-center mb-4">
+                    <div class="col-md-6">
+                        <label for="listed_after" class="form-label">Listed After:</label>
+                        <input type="date" id="listed_after" name="listed_after" t-att-value="listed_after"/>
+                        <button class="btn btn-primary" onclick="filterbudgets()">Filter</button>
+                    </div>
+                </div>
+                    <div class="row justify-content-center">
+                        <t t-foreach="budgets" t-as="budget">
+                            <div class="col-md-12 col-xl-10">
+                                <div class="card shadow-1 border rounded-4 m-2">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6 col-lg-6 col-xl-6">
+                                                <h6><t t-esc="budget.name"/></h6>      
+                                                <div class="d-flex flex-row align-items-center mb-1">
+                                                    <h4 class="mb-1 me-1">&#8377;<t t-esc="budget.amount"/></h4>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-2 col-xl-12 border-left border-sm-start-none border-start border-dark">
+                                                <div class="d-flex flex-column mt-4">
+                                                    <a class="btn btn-success btn-sm custom-button" t-att-href="'/budgets/'+str(budget.name)">Know more</a>
+                                                </div>
+                                            </div>  
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                    <ul class="pagination">
+                        <li class="page-item" t-if="page > 1">
+                            <a class="page-link" t-att-href="'/budgets?page=' + str(page-1)" aria-label="Previous page">
+                                <span aria-hidden="true">Previous page</span>
+                            </a>
+                            
+                        </li>
+                        <t t-if="total_pages >= page">
+                        <li class="page-item">
+                            <a class="page-link" t-att-href="'/budgets?page=' + str(page)">
+                                <t id='page_id' t-esc="page"/> of <t t-esc="total_pages"/>
+                            </a>
+        
+                        </li>
+                        </t>
+                        <t t-if="total_pages >= page">
+                        <li class="page-item" t-if="page != total_pages">
+                            <a class="page-link" t-att-href="'/budgets?page=' + str(page+1)" aria-label="Next page">
+                                <span aria-hidden="true">Next page</span>
+                            </a>
+         
+                        </li>
+                    </t>
+                    </ul>                    
+                </div>
+            </section>
+        </t>
+        <script type="text/javascript">
+            function filterbudgets() {
+                var listedAfter = document.getElementById('listed_after').value;
+                window.location.href = '/budgets?listed_after=' + listedAfter;
+            }
+        </script>
+    </template>
+</odoo>

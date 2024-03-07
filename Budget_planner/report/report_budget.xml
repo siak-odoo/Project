@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_budget" model="ir.actions.report">
+        <field name="name">reports</field>
+        <field name="model">budget.user</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">Budget_planner.budget_template</field>
+       <field name="report_file">Budget_planner.budget_template</field>
+       <field name="print_report_name">'reports_res_users - %s'</field>
+       <field name="binding_model_id" ref="model_budget_user"/>
+       <field name="binding_type">report</field>
+    </record>   
+</odoo>

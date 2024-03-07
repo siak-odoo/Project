@@ -18,6 +18,10 @@
         <field name="model">budget.expense</field>
         <field name="arch" type="xml">
             <form string="budget form" >
+              <div class="oe_button_box" name="button_box">
+                <button name="%(budget_user_action)d" class="oe_stat_button" icon="fa-credit-card" string="Budgets" type="action">
+                </button>
+            </div>
                 <group>
                 <group>
                     <field name="name"/>
@@ -34,11 +38,11 @@
           </form>
         </field>
     </record>
-
+ 
     <record id="budget_expense_action" model="ir.actions.act_window">
         <field name="name">Expenses</field>
         <field name="res_model">budget.expense</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,kanban</field>
     </record>
 
   </odoo>

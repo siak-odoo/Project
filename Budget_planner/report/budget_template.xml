@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="budget_template">
+        <t t-foreach="docs" t-as="budget">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                       
+                        <h2>
+                            <span t-field="budget.name"/>
+                        </h2>
+                        <div>
+                            <strong>Budget Amount: </strong>
+                            <span t-field="budget.amount"/>
+                        </div>
+                        <div>
+                            <strong>Category of budget: </strong>
+                            <span t-field="budget.budget_category"/>
+                        </div>
+                        <div>
+                            <strong>Expense cost: </strong>
+                            <span t-field="budget.expense_cost"/>
+                        </div>
+                        <t t-set="expense" t-value="budget.mapped('expenses')"/>
+                        <p t-if="len(expense) == 0">
+                            <h3>There are no expenses yet!</h3>
+                        </p>
+                        <t t-call="Budget_planner.budget_table"/>
+                        
+                       </div>
+                </t>
+            </t>
+        </t>
+    </template>
+    
+    <template id="budget_table">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Expense name</th>
+                    <th>Amount</th>
+                    <th>Expense category</th>
+                    <th>Expense budget name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr t-foreach="expense" t-as="expense_info">
+                    <td>
+                        <span t-field="expense_info.name"/>
+                    </td>
+                    <td>
+                        <span t-field="expense_info.amount"/>
+                    </td>
+                    <td>
+                        <span t-field="expense_info.expense_category"/>
+                    </td>
+                    <td>
+                        <span t-field="expense_info.budget_id"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </template>
+
+</odoo>

@@ -34,3 +34,5 @@ class Budget(models.Model):
     def _compute_savings_cost(self):
         for record in self:
             record.savings_cost = record.amount - record.expense_cost
+    
+    
